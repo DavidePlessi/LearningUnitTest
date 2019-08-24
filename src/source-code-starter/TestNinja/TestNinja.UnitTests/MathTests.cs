@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using TestNinja.Fundamentals;
 
@@ -81,5 +82,34 @@ namespace TestNinja.UnitTests
         //      
         //      Assert.That(result, Is.EqualTo(5));
         //  }
+        
+        /* Testing arrays and collections
+         * 
+         */
+
+        [Test]
+        public void GetOddNumbers_LimitGreaterThanZero_ReturnOddNumbersUpToLimit()
+        {
+            var res = _math.GetOddNumbers(5);
+            
+            // More general way
+            // Assert.That(res, Is.Not.Empty);
+            
+            // Specific
+            // Assert.That(res.Count(), Is.EqualTo(3));
+            // Assert.That(res.Count(), Does.Contain(1));
+            // Assert.That(res.Count(), Does.Contain(3));
+            // Assert.That(res.Count(), Does.Contain(5));
+             
+            // Cleaner way
+            Assert.That(res, Is.EquivalentTo(new [] {1, 3, 5}));
+            
+            // USEFUL ASSERTION
+            // Check if is ordered
+            Assert.That(res, Is.Ordered);
+            // Check unique
+            Assert.That(res, Is.Unique);
+        }
+        
     }
 }
